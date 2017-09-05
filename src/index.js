@@ -12,5 +12,5 @@ const store = createStore(reducer,
 
 console.log(store.getState());
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App store={store}/>, document.getElementById('root'));
 registerServiceWorker();
