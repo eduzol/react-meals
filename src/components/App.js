@@ -19,7 +19,7 @@ class App extends Component {
  * allows you to specify which data from the store 
  * you want passed to your React component
  */
-function mapStateToProps (calendar) {
+function mapStateToProps ({calendar, food}) {
   const dayOrder = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
 
   return {
@@ -27,7 +27,7 @@ function mapStateToProps (calendar) {
       day,
       meals: Object.keys(calendar[day]).reduce((meals, meal) => {
         meals[meal] = calendar[day][meal]
-          ? calendar[day][meal]
+          ? food[calendar[day][meal]]
           : null
         return meals
       }, {})
@@ -40,7 +40,6 @@ function mapDispatchToProps(dispatch){
     selectRecipe : (data) => dispatch(addRecipe(data)) , 
     remove : (data) => dispatch(removeFromCalendar(data)), 
   }
-
 }
 export default connect(
   mapStateToProps,mapDispatchToProps
